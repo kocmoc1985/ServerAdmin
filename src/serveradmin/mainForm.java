@@ -145,6 +145,7 @@ public class mainForm extends javax.swing.JFrame {
         jToggleButton2 = new javax.swing.JToggleButton();
         jToggleButton3 = new javax.swing.JToggleButton();
         jButton59 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jButton2sessions = new javax.swing.JButton();
         textArea1 = new java.awt.TextArea();
@@ -453,6 +454,16 @@ public class mainForm extends javax.swing.JFrame {
         });
         jPanel6.add(jButton59);
         jButton59.setBounds(110, 220, 170, 40);
+
+        jButton3.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jButton3.setText("User Credentials");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel6.add(jButton3);
+        jButton3.setBounds(450, 10, 170, 40);
 
         jTabbedPane2.addTab("Windows", jPanel6);
 
@@ -1261,6 +1272,10 @@ public class mainForm extends javax.swing.JFrame {
         } 
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+      HelpM.showCmdInstructionInTextField("rundll32.exe keymgr.dll, KRShowKeyMgr");
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     private String chooseNetworkInterFace() {
         ArrayList<String> interface_list = HelpM.getCurrentEnvironmentNetworkIp();
         String menu = "Choose Network Interface:";
@@ -1322,6 +1337,7 @@ public class mainForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton28;
     private javax.swing.JButton jButton29;
     public static javax.swing.JButton jButton2sessions;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton30;
     private javax.swing.JButton jButton31;
     private javax.swing.JButton jButton32;
