@@ -182,6 +182,7 @@ public class mainForm extends javax.swing.JFrame {
         jButton29 = new javax.swing.JButton();
         jButton16 = new javax.swing.JButton();
         jButton25 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jButton53 = new javax.swing.JButton();
         jButton20 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
@@ -500,7 +501,7 @@ public class mainForm extends javax.swing.JFrame {
             }
         });
 
-        jButton11.setText("IP CONF");
+        jButton11.setText("IP / MAC");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton11ActionPerformed(evt);
@@ -820,6 +821,14 @@ public class mainForm extends javax.swing.JFrame {
         });
         jPanel2.add(jButton25);
 
+        jButton4.setText("REMAP KEYS");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton4);
+
         jButton53.setText("OPC Browser");
         jButton53.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1104,7 +1113,7 @@ public class mainForm extends javax.swing.JFrame {
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         //        SA.run_program_with_catching_output(textArea1, "ipconfig", "", "");
-        HelpM.run_program_with_catching_output(textArea1, "ipconfig", "", "", "", "");
+        HelpM.run_program_with_catching_output(textArea1, "ipconfig", "", "/all", "", "");
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
@@ -1276,6 +1285,10 @@ public class mainForm extends javax.swing.JFrame {
       HelpM.showCmdInstructionInTextField("rundll32.exe keymgr.dll, KRShowKeyMgr");
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+       SA.run_application("lib/SharpKeys.exe", "");
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     private String chooseNetworkInterFace() {
         ArrayList<String> interface_list = HelpM.getCurrentEnvironmentNetworkIp();
         String menu = "Choose Network Interface:";
@@ -1348,6 +1361,7 @@ public class mainForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton37;
     private javax.swing.JButton jButton38;
     private javax.swing.JButton jButton39;
+    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton40;
     private javax.swing.JButton jButton41;
     private javax.swing.JButton jButton42;
