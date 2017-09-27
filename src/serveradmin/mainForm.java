@@ -11,6 +11,7 @@
 package serveradmin;
 
 import java.awt.AWTException;
+import java.awt.Desktop;
 import java.awt.Image;
 import java.awt.MenuItem;
 import java.awt.PopupMenu;
@@ -19,6 +20,8 @@ import java.awt.TrayIcon;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -40,6 +43,8 @@ public class mainForm extends javax.swing.JFrame {
     ShutDown SHUT_DOWN = null;
     //
     private PopupMenu popup;
+    private MenuItem myComputer;
+    private MenuItem netWorkSettings;
     private MenuItem exit;
     private MenuItem open;
     private SystemTray tray;
@@ -70,20 +75,32 @@ public class mainForm extends javax.swing.JFrame {
                         System.exit(0);
                     } else if (e.getSource() == open) {
                         makeVisible();
+                    } else if (e.getSource() == netWorkSettings) {
+                        jButton36ActionPerformed(null);
+                    } else if (e.getSource() == myComputer) {
+                        jButton31ActionPerformed(null);
+                    } else {
+                        makeVisible();
                     }
-                    makeVisible();
+
                 }
             };
-
+            //
             popup = new PopupMenu();
             exit = new MenuItem("EXIT");
             open = new MenuItem("OPEN");
-
+            netWorkSettings = new MenuItem("NETWORK SETTINGS");
+            myComputer = new MenuItem("MY COMPUTER");
+            //
             exit.addActionListener(actionListener);
             open.addActionListener(actionListener);
-
-            popup.add(exit);
+            netWorkSettings.addActionListener(actionListener);
+            myComputer.addActionListener(actionListener);
+            //
+            popup.add(myComputer);
+            popup.add(netWorkSettings);
             popup.add(open);
+            popup.add(exit);
 
             trayIcon = new TrayIcon(image, "ServerAdmin", popup);
 
@@ -146,6 +163,7 @@ public class mainForm extends javax.swing.JFrame {
         jToggleButton3 = new javax.swing.JToggleButton();
         jButton59 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jToggleButton4 = new javax.swing.JToggleButton();
         jPanel1 = new javax.swing.JPanel();
         jButton2sessions = new javax.swing.JButton();
         textArea1 = new java.awt.TextArea();
@@ -438,14 +456,15 @@ public class mainForm extends javax.swing.JFrame {
         jPanel6.add(jToggleButton2);
         jToggleButton2.setBounds(510, 440, 110, 60);
 
-        jToggleButton3.setText("Sound");
+        jToggleButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jToggleButton3.setText("Kaspersky virus check");
         jToggleButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton3ActionPerformed(evt);
             }
         });
         jPanel6.add(jToggleButton3);
-        jToggleButton3.setBounds(450, 110, 130, 40);
+        jToggleButton3.setBounds(320, 320, 180, 40);
 
         jButton59.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jButton59.setText("On Screen Keyboard");
@@ -466,6 +485,15 @@ public class mainForm extends javax.swing.JFrame {
         });
         jPanel6.add(jButton3);
         jButton3.setBounds(450, 10, 170, 40);
+
+        jToggleButton4.setText("Sound");
+        jToggleButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton4ActionPerformed(evt);
+            }
+        });
+        jPanel6.add(jToggleButton4);
+        jToggleButton4.setBounds(450, 110, 130, 40);
 
         jTabbedPane2.addTab("Windows", jPanel6);
 
@@ -1165,7 +1193,17 @@ public class mainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton59ActionPerformed
 
     private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
-        SA.run_with_cmd("mmsys.cpl", "");
+        if (Desktop.isDesktopSupported()) {
+            try {
+                try {
+                    Desktop.getDesktop().browse(new URI("https://virusdesk.kaspersky.com/"));
+                } catch (URISyntaxException ex) {
+                    Logger.getLogger(mainForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(mainForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_jToggleButton3ActionPerformed
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
@@ -1276,9 +1314,9 @@ public class mainForm extends javax.swing.JFrame {
     private void jButton1gpeditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1gpeditActionPerformed
         SA.run_with_cmd("gpedit.msc", "");
         textArea1.append("1. Disable Task Manager = User Configuration - Administrative Templates - System - Ctrl + "
-            + "Alt + Del Option - Remove Task Manager \n");
+                + "Alt + Del Option - Remove Task Manager \n");
         textArea1.append("2. Disable LogOff Btn = User Configuration - Administrative Templates - Start Menu and Taskbar "
-            + " - Remove LoggOff to the Start Menu \n");
+                + " - Remove LoggOff to the Start Menu \n");
         textArea1.append("3. Disable Autorun = Computer Configuration - Administrative Templates - System - Turn off Autoplay (property) \n");
         textArea1.append("4. Set disconnect for an idle session: User Configuration -> Administrative Templates -> Windows Components -> Terminal Services -> Sessions \n");
     }//GEN-LAST:event_jButton1gpeditActionPerformed
@@ -1295,20 +1333,24 @@ public class mainForm extends javax.swing.JFrame {
             HelpM.getMacAddrHost(textArea1, host);
         } catch (Exception ex) {
             Logger.getLogger(mainForm.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-      HelpM.showCmdInstructionInTextField("rundll32.exe keymgr.dll, KRShowKeyMgr");
+        HelpM.showCmdInstructionInTextField("rundll32.exe keymgr.dll, KRShowKeyMgr");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-       SA.run_application("lib/SharpKeys.exe", "");
+        SA.run_application("lib/SharpKeys.exe", "");
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-       HelpM.run_program_with_catching_output(textArea1, "driverquery", "", "-v", "", "");
+        HelpM.run_program_with_catching_output(textArea1, "driverquery", "", "-v", "", "");
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jToggleButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton4ActionPerformed
 
     private String chooseNetworkInterFace() {
         ArrayList<String> interface_list = HelpM.getCurrentEnvironmentNetworkIp();
@@ -1424,6 +1466,7 @@ public class mainForm extends javax.swing.JFrame {
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JToggleButton jToggleButton3;
+    private javax.swing.JToggleButton jToggleButton4;
     public static java.awt.TextArea textArea1;
     // End of variables declaration//GEN-END:variables
 }
