@@ -25,10 +25,6 @@ import javax.swing.JOptionPane;
  */
 public class SA {
 
-    
-    
-    
-    
     public static void run_application(String path_and_name, String argument) {
         String[] commands = {path_and_name, argument};
         ProcessBuilder builder = new ProcessBuilder(commands);
@@ -44,7 +40,7 @@ public class SA {
         ProcessBuilder builder = new ProcessBuilder(commands);
         builder.directory(new File("lib"));
         try {
-           Process p = builder.start();
+            Process p = builder.start();
         } catch (IOException ex) {
             Logger.getLogger(SA.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -62,8 +58,8 @@ public class SA {
             System.out.println("" + ex);
         }
     }
-    
-    public static void openMyComputer() throws AWTException{
+
+    public static void openMyComputer() throws AWTException {
         Robot robot = new Robot();
         //
         robot.keyPress(KeyEvent.VK_WINDOWS);
@@ -119,7 +115,7 @@ public class SA {
         }
         return true;
     }
-    
+
     public static void open_dir(String path) {
         try {
             Desktop.getDesktop().open(new File(path));
@@ -127,7 +123,6 @@ public class SA {
             Logger.getLogger(SA.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
 
     public static void check_if_component_present(String path, JButton button) {
         if (get_if_file_exist(path) == false) {
@@ -138,5 +133,31 @@ public class SA {
     private static boolean get_if_file_exist(String path) {
         File f = new File(path);
         return f.exists();
+    }
+
+    public static void restart() throws IOException {
+        //
+        if (confirm() == false) {
+            return;
+        }
+        //
+        Runtime runtime = Runtime.getRuntime();
+        Process proc = runtime.exec("shutdown -r -t 0");
+        System.exit(0);
+    }
+    
+    public static void shut_down_immediately() throws IOException {
+        //
+        if (confirm() == false) {
+            return;
+        }
+        //
+        Runtime runtime = Runtime.getRuntime();
+        Process proc = runtime.exec("shutdown -s -t 0");
+        System.exit(0);
+    }
+
+    public static boolean confirm() {
+        return JOptionPane.showConfirmDialog(null, "Confirm action?", "Confirm", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
     }
 }

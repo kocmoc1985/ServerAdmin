@@ -43,6 +43,8 @@ public class mainForm extends javax.swing.JFrame {
     ShutDown SHUT_DOWN = null;
     //
     private PopupMenu popup;
+    private MenuItem shutdown;
+    private MenuItem restart;
     private MenuItem myComputer;
     private MenuItem netWorkSettings;
     private MenuItem exit;
@@ -79,6 +81,12 @@ public class mainForm extends javax.swing.JFrame {
                         jButton36ActionPerformed(null);
                     } else if (e.getSource() == myComputer) {
                         jButton31ActionPerformed(null);
+                    } else if (e.getSource() == restart) {
+                        try {
+                            SA.restart();
+                        } catch (IOException ex) {
+                            Logger.getLogger(mainForm.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     } else {
                         makeVisible();
                     }
@@ -91,16 +99,22 @@ public class mainForm extends javax.swing.JFrame {
             open = new MenuItem("OPEN");
             netWorkSettings = new MenuItem("NETWORK SETTINGS");
             myComputer = new MenuItem("MY COMPUTER");
+            restart = new MenuItem("RESTART");
+            shutdown = new MenuItem("SHUTDOWN");
             //
             exit.addActionListener(actionListener);
             open.addActionListener(actionListener);
             netWorkSettings.addActionListener(actionListener);
             myComputer.addActionListener(actionListener);
+            restart.addActionListener(actionListener);
+            shutdown.addActionListener(actionListener);
             //
             popup.add(myComputer);
             popup.add(netWorkSettings);
             popup.add(open);
             popup.add(exit);
+            popup.add(restart);
+            popup.add(shutdown);
 
             trayIcon = new TrayIcon(image, "ServerAdmin", popup);
 
