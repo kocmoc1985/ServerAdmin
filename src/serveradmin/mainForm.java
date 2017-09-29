@@ -43,6 +43,7 @@ public class mainForm extends javax.swing.JFrame {
     ShutDown SHUT_DOWN = null;
     //
     private PopupMenu popup;
+    private MenuItem rdp;
     private MenuItem shutdown;
     private MenuItem restart;
     private MenuItem myComputer;
@@ -79,11 +80,19 @@ public class mainForm extends javax.swing.JFrame {
                         makeVisible();
                     } else if (e.getSource() == netWorkSettings) {
                         jButton36ActionPerformed(null);
+                    }else if (e.getSource() == rdp) {
+                        jButton39ActionPerformed(null);
                     } else if (e.getSource() == myComputer) {
                         jButton31ActionPerformed(null);
                     } else if (e.getSource() == restart) {
                         try {
                             SA.restart();
+                        } catch (IOException ex) {
+                            Logger.getLogger(mainForm.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    } else if (e.getSource() == shutdown) {
+                        try {
+                            SA.shut_down_immediately();
                         } catch (IOException ex) {
                             Logger.getLogger(mainForm.class.getName()).log(Level.SEVERE, null, ex);
                         }
@@ -101,6 +110,7 @@ public class mainForm extends javax.swing.JFrame {
             myComputer = new MenuItem("MY COMPUTER");
             restart = new MenuItem("RESTART");
             shutdown = new MenuItem("SHUTDOWN");
+            rdp = new MenuItem("RDP");
             //
             exit.addActionListener(actionListener);
             open.addActionListener(actionListener);
@@ -108,13 +118,15 @@ public class mainForm extends javax.swing.JFrame {
             myComputer.addActionListener(actionListener);
             restart.addActionListener(actionListener);
             shutdown.addActionListener(actionListener);
+            rdp.addActionListener(actionListener);
             //
             popup.add(myComputer);
             popup.add(netWorkSettings);
-            popup.add(open);
-            popup.add(exit);
+            popup.add(rdp);
             popup.add(restart);
             popup.add(shutdown);
+            popup.add(open);
+            popup.add(exit);
 
             trayIcon = new TrayIcon(image, "ServerAdmin", popup);
 
