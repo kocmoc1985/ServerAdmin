@@ -127,8 +127,14 @@ public class mainForm extends javax.swing.JFrame {
             popup.add(shutdown);
             popup.add(open);
             popup.add(exit);
-
-            trayIcon = new TrayIcon(image, "ServerAdmin", popup);
+            //
+            ArrayList list = HelpM.getCurrentEnvironmentNetworkIp();
+            String trayMsg = "ServerAdmin";
+            for (Object ip : list) {
+                trayMsg += "\n" + (String)ip;
+            }
+            //
+            trayIcon = new TrayIcon(image, trayMsg, popup);
 
             trayIcon.setImageAutoSize(true);
             trayIcon.addActionListener(actionListener);
