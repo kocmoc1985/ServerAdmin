@@ -497,34 +497,37 @@
                               <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="jButton13" min="-2" pref="150" max="-2" attributes="0"/>
+                                      <Component id="jButton6" min="-2" pref="150" max="-2" attributes="0"/>
                                       <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                                      <Component id="jButton14" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jButton15" min="-2" max="-2" attributes="0"/>
-                                          <Group type="102" attributes="0">
-                                              <EmptySpace min="80" pref="80" max="-2" attributes="0"/>
-                                              <Component id="jButton12" min="-2" pref="110" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
+                                      <Component id="jTextField1RD" min="-2" pref="176" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                                      <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="jButton2sessions" min="-2" pref="150" max="-2" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jButton13" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                                          <Component id="jButton2sessions" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" attributes="0">
-                                              <Component id="jButton6" min="-2" pref="150" max="-2" attributes="0"/>
                                               <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                                              <Component id="jTextField1RD" min="-2" pref="176" max="-2" attributes="0"/>
+                                              <Component id="jButton14" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="jButton15" min="-2" max="-2" attributes="0"/>
+                                                  <Group type="102" attributes="0">
+                                                      <EmptySpace min="80" pref="80" max="-2" attributes="0"/>
+                                                      <Component id="jButton12" min="-2" pref="110" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                               <Component id="jButton5" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
-                                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                                      <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace pref="50" max="32767" attributes="0"/>
@@ -532,8 +535,14 @@
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jButton26" min="-2" pref="150" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jButton46" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jButton51" max="32767" attributes="0"/>
+                                  </Group>
                                   <Component id="textArea1" max="32767" attributes="0"/>
-                                  <Component id="jButton26" alignment="1" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           </Group>
@@ -597,36 +606,41 @@
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jButton13" min="-2" pref="40" max="-2" attributes="0"/>
-                                  <Component id="jButton14" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButton15" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButton12" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                              <Component id="jButton2sessions" min="-2" pref="40" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jTextField1RD" min="-2" pref="40" max="-2" attributes="0"/>
-                                          <Group type="102" attributes="0">
-                                              <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
-                                              <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
-                                          </Group>
+                                          <Component id="jButton13" min="-2" pref="40" max="-2" attributes="0"/>
+                                          <Component id="jButton12" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                      <Component id="jButton2sessions" min="-2" pref="40" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jButton6" min="-2" pref="40" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jButton14" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jButton15" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jButton5" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Component id="jButton26" min="-2" pref="34" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jTextField1RD" min="-2" pref="40" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
+                                      <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="jButton6" min="-2" pref="40" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jButton26" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                                  <Component id="jButton46" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                                  <Component id="jButton51" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                              </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="textArea1" min="-2" pref="283" max="-2" attributes="0"/>
                           </Group>
@@ -835,6 +849,22 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton46">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Port Redirection Auto"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton46ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton51">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Redirections.txt"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton51ActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

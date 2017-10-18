@@ -6,6 +6,7 @@ package serveradmin;
 
 import com.jezhumble.javasysmon.JavaSysMon;
 import com.jezhumble.javasysmon.ProcessInfo;
+import java.awt.Desktop;
 import java.awt.TextArea;
 import java.io.BufferedReader;
 import java.io.File;
@@ -291,6 +292,10 @@ public class HelpM {
         }
         //
         return builder.start();
+    }
+    
+    public static void run_application_with_associated_application(File file) throws IOException {
+        Desktop.getDesktop().open(file);
     }
     
     public static ArrayList getCurrentEnvironmentNetworkIp() {
