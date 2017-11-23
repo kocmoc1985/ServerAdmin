@@ -51,6 +51,8 @@ public class mainForm extends javax.swing.JFrame {
     private MenuItem myComputer;
     private MenuItem netWorkSettings;
     private MenuItem wakeOnLan;
+    private MenuItem refreshIps;
+    private MenuItem processExp;
     private MenuItem exit;
     private MenuItem open;
     private SystemTray tray;
@@ -81,13 +83,18 @@ public class mainForm extends javax.swing.JFrame {
                         System.exit(0);
                     } else if (e.getSource() == open) {
                         makeVisible();
+                    }else if (e.getSource() == refreshIps) {
+                        String str = buildTrayMessage();
+                        trayIcon.setToolTip(str);
+                    }else if (e.getSource() == processExp) {
+                        jButton8ActionPerformed(null);
                     } else if (e.getSource() == netWorkSettings) {
                         jButton36ActionPerformed(null);
                     } else if (e.getSource() == rdp) {
                         jButton39ActionPerformed(null);
-                    }else if (e.getSource() == portRedirectionAuto) {
+                    } else if (e.getSource() == portRedirectionAuto) {
                         jButton46ActionPerformed(null);
-                    }else if (e.getSource() == wakeOnLan) {
+                    } else if (e.getSource() == wakeOnLan) {
                         jButton24ActionPerformed(null);
                     } else if (e.getSource() == myComputer) {
                         jButton31ActionPerformed(null);
@@ -120,6 +127,8 @@ public class mainForm extends javax.swing.JFrame {
             rdp = new MenuItem("RDP");
             portRedirectionAuto = new MenuItem("PORT REDIR AUTO");
             wakeOnLan = new MenuItem("WAKE ON LAN");
+            refreshIps = new MenuItem("REFRESH IP's");
+            processExp = new MenuItem("PROCESS EXP");
             //
             exit.addActionListener(actionListener);
             open.addActionListener(actionListener);
@@ -130,23 +139,30 @@ public class mainForm extends javax.swing.JFrame {
             rdp.addActionListener(actionListener);
             portRedirectionAuto.addActionListener(actionListener);
             wakeOnLan.addActionListener(actionListener);
+            refreshIps.addActionListener(actionListener);
+            processExp.addActionListener(actionListener);
             //
             popup.add(myComputer);
             popup.add(netWorkSettings);
             popup.add(rdp);
             popup.add(portRedirectionAuto);
             popup.add(wakeOnLan);
+            popup.add(processExp);
             popup.add(restart);
             popup.add(shutdown);
+            popup.add(refreshIps);
             popup.add(open);
             popup.add(exit);
             //
-            ArrayList list = HelpM.getCurrentEnvironmentNetworkIp();
-            String trayMsg = "ServerAdmin";
             //
-            for (Object ip : list) {
-                trayMsg += "\n" + (String) ip;
-            }
+//            ArrayList list = HelpM.getCurrentEnvironmentNetworkIp();
+//            String trayMsg = "ServerAdmin";
+//            //
+//            for (Object ip : list) {
+//                trayMsg += "\n" + (String) ip;
+//            }
+            //
+            String trayMsg = buildTrayMessage();
             //
             trayIcon = new TrayIcon(image, trayMsg, popup);
             //
@@ -164,6 +180,18 @@ public class mainForm extends javax.swing.JFrame {
         } else {
             //  System Tray is not supported
         }
+    }
+
+    private String buildTrayMessage() {
+        //
+        ArrayList list = HelpM.getCurrentEnvironmentNetworkIp();
+        String trayMsg = "ServerAdmin:\n" + System.getProperty("user.name");
+        //
+        for (Object ip : list) {
+            trayMsg += "\n" + (String) ip;
+        }
+        //
+        return trayMsg;
     }
 
     private void makeVisible() {
@@ -247,14 +275,11 @@ public class mainForm extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
-        jButton27 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
         jButton29 = new javax.swing.JButton();
         jButton16 = new javax.swing.JButton();
         jButton25 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jButton53 = new javax.swing.JButton();
-        jButton20 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jButton55 = new javax.swing.JButton();
         jButton54 = new javax.swing.JButton();
@@ -922,14 +947,6 @@ public class mainForm extends javax.swing.JFrame {
         });
         jPanel2.add(jButton9);
 
-        jButton27.setText("PROCESS MONITOR");
-        jButton27.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton27ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton27);
-
         jButton10.setText("TCP VIEW");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -964,29 +981,13 @@ public class mainForm extends javax.swing.JFrame {
         });
         jPanel2.add(jButton25);
 
-        jButton4.setText("REMAP KEYS");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton4);
-
-        jButton53.setText("OPC Browser");
+        jButton53.setText("APPLICOM OPC BROWSER");
         jButton53.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton53ActionPerformed(evt);
             }
         });
         jPanel2.add(jButton53);
-
-        jButton20.setText("Image to .ico");
-        jButton20.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton20ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton20);
 
         jTabbedPane2.addTab("External", jPanel2);
 
@@ -1034,7 +1035,7 @@ public class mainForm extends javax.swing.JFrame {
         });
         jPanel5.add(jButton60);
 
-        jTabbedPane2.addTab("Remote Admin", jPanel5);
+        jTabbedPane2.addTab("Hints", jPanel5);
 
         getContentPane().add(jTabbedPane2);
         jTabbedPane2.setBounds(10, 0, 640, 550);
@@ -1093,10 +1094,6 @@ public class mainForm extends javax.swing.JFrame {
         SA.run_application_2("lib/capture.exe"); // OBS! Must be run with "SA.run_application_2" otherwise not working
     }//GEN-LAST:event_jButton25ActionPerformed
 
-    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
-        SA.run_application("lib/simplyicon.exe", "");
-    }//GEN-LAST:event_jButton20ActionPerformed
-
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         SA.run_application("lib/pixie.exe", "");
     }//GEN-LAST:event_jButton16ActionPerformed
@@ -1109,10 +1106,6 @@ public class mainForm extends javax.swing.JFrame {
         //        SA.run_application("lib/tcpview.exe", "");
         HelpM.find_and_run_application("lib", "tcpview.exe");
     }//GEN-LAST:event_jButton10ActionPerformed
-
-    private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
-        SA.run_application("lib/procmon.exe", "");
-    }//GEN-LAST:event_jButton27ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         SA.run_application("lib/autoruns.exe", "");
@@ -1438,10 +1431,6 @@ public class mainForm extends javax.swing.JFrame {
         HelpM.showCmdInstructionInTextField("rundll32.exe keymgr.dll, KRShowKeyMgr");
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        SA.run_application("lib/SharpKeys.exe", "");
-    }//GEN-LAST:event_jButton4ActionPerformed
-
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         HelpM.run_program_with_catching_output(textArea1, "driverquery", "", "-v", "", "");
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -1475,7 +1464,7 @@ public class mainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton24ActionPerformed
 
     private void jButton52ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton52ActionPerformed
-         try {
+        try {
             HelpM.run_application_with_associated_application(new File("lib/wol/main.properties"));
         } catch (IOException ex) {
             Logger.getLogger(mainForm.class.getName()).log(Level.SEVERE, null, ex);
@@ -1533,14 +1522,12 @@ public class mainForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton19;
     public static javax.swing.JButton jButton1gpedit;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton22;
     private javax.swing.JButton jButton23;
     private javax.swing.JButton jButton24;
     private javax.swing.JButton jButton25;
     private javax.swing.JButton jButton26;
-    private javax.swing.JButton jButton27;
     private javax.swing.JButton jButton28;
     private javax.swing.JButton jButton29;
     public static javax.swing.JButton jButton2sessions;
@@ -1555,7 +1542,6 @@ public class mainForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton37;
     private javax.swing.JButton jButton38;
     private javax.swing.JButton jButton39;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton40;
     private javax.swing.JButton jButton41;
     private javax.swing.JButton jButton42;
