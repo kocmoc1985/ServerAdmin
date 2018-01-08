@@ -1337,9 +1337,10 @@ public class mainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton69ActionPerformed
 
     private void jButton66ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton66ActionPerformed
-        String str = "%windir%\\syswow64\\odbcad32.exe";
+//        String str = "%windir%\\syswow64\\odbcad32.exe";
         //        HelpM.showCmdInstructionInTextArea(str);
-        SA.run_with_cmd("%windir%\\syswow64\\odbcad32.exe", "");
+//        SA.run_with_cmd("%windir%\\syswow64\\odbcad32.exe", "");
+        SA.run_with_cmd("odbcad32", "");
     }//GEN-LAST:event_jButton66ActionPerformed
 
     private void jButton50ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton50ActionPerformed
@@ -1391,7 +1392,8 @@ public class mainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton37ActionPerformed
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
-        SA.run_with_cmd("odbcad32", "");
+        
+        SA.run_with_cmd("%windir%\\syswow64\\odbcad32.exe", "");
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void jButton34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton34ActionPerformed
