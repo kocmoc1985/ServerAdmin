@@ -106,7 +106,7 @@ public class HelpM {
     }
     
     public static void generate_disable_rdp_str() {
-        String str = "\"HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Terminal Server\" /v fDenyTSConnections /t REG_DWORD /d 1 /f";
+        String str = "reg add \"HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Terminal Server\" /v fDenyTSConnections /t REG_DWORD /d 1 /f";
         showCmdInstructionInTextField(str);
     }
     

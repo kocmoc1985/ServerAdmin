@@ -53,6 +53,7 @@ public class mainForm extends javax.swing.JFrame {
     private MenuItem wakeOnLan;
     private MenuItem refreshIps;
     private MenuItem processExp;
+    private MenuItem tightVnc;
     private MenuItem exit;
     private MenuItem open;
     private SystemTray tray;
@@ -92,7 +93,9 @@ public class mainForm extends javax.swing.JFrame {
                         jButton36ActionPerformed(null);
                     } else if (e.getSource() == rdp) {
                         jButton39ActionPerformed(null);
-                    } else if (e.getSource() == portRedirectionAuto) {
+                    } else if (e.getSource() == tightVnc) {
+                        jButton35ActionPerformed(null);
+                    }else if (e.getSource() == portRedirectionAuto) {
                         jButton46ActionPerformed(null);
                     } else if (e.getSource() == wakeOnLan) {
                         jButton24ActionPerformed(null);
@@ -129,6 +132,7 @@ public class mainForm extends javax.swing.JFrame {
             wakeOnLan = new MenuItem("WAKE ON LAN");
             refreshIps = new MenuItem("REFRESH IP's");
             processExp = new MenuItem("PROCESS EXP");
+            tightVnc = new MenuItem("VNC");
             //
             exit.addActionListener(actionListener);
             open.addActionListener(actionListener);
@@ -141,10 +145,12 @@ public class mainForm extends javax.swing.JFrame {
             wakeOnLan.addActionListener(actionListener);
             refreshIps.addActionListener(actionListener);
             processExp.addActionListener(actionListener);
+            tightVnc.addActionListener(actionListener);
             //
             popup.add(myComputer);
             popup.add(netWorkSettings);
             popup.add(rdp);
+            popup.add(tightVnc);
             popup.add(portRedirectionAuto);
             popup.add(wakeOnLan);
             popup.add(processExp);
@@ -191,7 +197,13 @@ public class mainForm extends javax.swing.JFrame {
             trayMsg += "\n" + (String) ip;
         }
         //
+        showRefreshIpsInMainWindow(trayMsg);
+        //
         return trayMsg;
+    }
+    
+    private void showRefreshIpsInMainWindow(String msg){
+        jLabel1.setText(msg.replaceAll("(\r\n|\n)", " / ").replaceAll("ServerAdmin:", "").replaceFirst("/", ""));
     }
 
     private void makeVisible() {
@@ -239,6 +251,7 @@ public class mainForm extends javax.swing.JFrame {
         jButton59 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jToggleButton4 = new javax.swing.JToggleButton();
+        jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jButton2sessions = new javax.swing.JButton();
         textArea1 = new java.awt.TextArea();
@@ -473,7 +486,7 @@ public class mainForm extends javax.swing.JFrame {
             }
         });
         jPanel6.add(jButton69);
-        jButton69.setBounds(10, 440, 160, 60);
+        jButton69.setBounds(10, 430, 160, 60);
 
         jButton70.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton70.setText("CMD AS ADMIN");
@@ -483,7 +496,7 @@ public class mainForm extends javax.swing.JFrame {
             }
         });
         jPanel6.add(jButton70);
-        jButton70.setBounds(170, 440, 180, 60);
+        jButton70.setBounds(170, 430, 180, 60);
 
         jButton31.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton31.setText("My Computer");
@@ -493,7 +506,7 @@ public class mainForm extends javax.swing.JFrame {
             }
         });
         jPanel6.add(jButton31);
-        jButton31.setBounds(350, 440, 160, 60);
+        jButton31.setBounds(350, 430, 160, 60);
 
         jButton32.setText("Firewall advanced");
         jButton32.addActionListener(new java.awt.event.ActionListener() {
@@ -530,7 +543,7 @@ public class mainForm extends javax.swing.JFrame {
             }
         });
         jPanel6.add(jToggleButton2);
-        jToggleButton2.setBounds(510, 440, 110, 60);
+        jToggleButton2.setBounds(510, 430, 110, 60);
 
         jToggleButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jToggleButton3.setText("Kaspersky virus check");
@@ -570,6 +583,10 @@ public class mainForm extends javax.swing.JFrame {
         });
         jPanel6.add(jToggleButton4);
         jToggleButton4.setBounds(450, 110, 130, 40);
+
+        jLabel1.setForeground(new java.awt.Color(153, 153, 153));
+        jPanel6.add(jLabel1);
+        jLabel1.setBounds(20, 496, 600, 20);
 
         jTabbedPane2.addTab("Windows", jPanel6);
 
@@ -1577,6 +1594,7 @@ public class mainForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;
