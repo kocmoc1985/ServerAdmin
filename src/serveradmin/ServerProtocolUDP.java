@@ -45,8 +45,8 @@ public class ServerProtocolUDP extends ServerProtocol_UDP {
 
     private static void shut_down() throws IOException {
         Runtime runtime = Runtime.getRuntime();
-        Process proc = runtime.exec("shutdown -s -t 5");
-        System.exit(0);
+        Process proc = runtime.exec("shutdown -s -t 10");
+//        System.exit(0);
     }
 
 }
