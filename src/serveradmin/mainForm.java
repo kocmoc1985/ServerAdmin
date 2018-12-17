@@ -3,13 +3,14 @@
  * and open the template in the editor.
  */
 
-/*
+ /*
  * mainForm.java
  *
  * Created on 2011-okt-06, 11:14:31
  */
 package serveradmin;
 
+import MyUdp.Server_UDP;
 import java.awt.AWTException;
 import java.awt.Desktop;
 import java.awt.Image;
@@ -32,12 +33,14 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import other.ShowMessage;
+import statics.HelpMy;
 
 /**
  *
  * @author Administrator
  */
-public class mainForm extends javax.swing.JFrame {
+public class mainForm extends javax.swing.JFrame implements ShowMessage {
 
     private static boolean console = false;
     private Image image = new ImageIcon("lib/1.png").getImage();
@@ -58,18 +61,33 @@ public class mainForm extends javax.swing.JFrame {
     private MenuItem open;
     private SystemTray tray;
     private TrayIcon trayIcon;
+    //
 
     /**
      * Creates new form mainForm
      */
     public mainForm() {
         initComponents();
+        initOther();
+        startUdpServer();
+    }
+
+    private void startUdpServer() {
+        ServerProtocolUDP protocolUDP = new ServerProtocolUDP(this);
+        Server_UDP server_UDP = new Server_UDP(9999, protocolUDP, this);
+    }
+
+    @Override
+    public void showMessage(String msg) {
+        jTextArea1.append(HelpMy.get_proper_date_time_same_format_on_all_computers() + "  " + msg + "\n");
+    }
+
+    private void initOther() {
         this.setTitle("Server Admin (java v. " + System.getProperty("java.version") + ")");
         this.setBounds(0, 0, 650, 591);
         this.setIconImage(image);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         toTray();
-//        this.setResizable(false);
     }
 
     private void toTray() {
@@ -84,10 +102,10 @@ public class mainForm extends javax.swing.JFrame {
                         System.exit(0);
                     } else if (e.getSource() == open) {
                         makeVisible();
-                    }else if (e.getSource() == refreshIps) {
+                    } else if (e.getSource() == refreshIps) {
                         String str = buildTrayMessage();
                         trayIcon.setToolTip(str);
-                    }else if (e.getSource() == processExp) {
+                    } else if (e.getSource() == processExp) {
                         jButton8ActionPerformed(null);
                     } else if (e.getSource() == netWorkSettings) {
                         jButton36ActionPerformed(null);
@@ -95,7 +113,7 @@ public class mainForm extends javax.swing.JFrame {
                         jButton39ActionPerformed(null);
                     } else if (e.getSource() == tightVnc) {
                         jButton35ActionPerformed(null);
-                    }else if (e.getSource() == portRedirectionAuto) {
+                    } else if (e.getSource() == portRedirectionAuto) {
                         jButton46ActionPerformed(null);
                     } else if (e.getSource() == wakeOnLan) {
                         jButton24ActionPerformed(null);
@@ -201,8 +219,8 @@ public class mainForm extends javax.swing.JFrame {
         //
         return trayMsg;
     }
-    
-    private void showRefreshIpsInMainWindow(String msg){
+
+    private void showRefreshIpsInMainWindow(String msg) {
         jLabel1.setText(msg.replaceAll("(\r\n|\n)", " / ").replaceAll("ServerAdmin:", "").replaceFirst("/", ""));
     }
 
@@ -294,17 +312,15 @@ public class mainForm extends javax.swing.JFrame {
         jButton25 = new javax.swing.JButton();
         jButton53 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
-        jButton55 = new javax.swing.JButton();
-        jButton54 = new javax.swing.JButton();
-        jButton56 = new javax.swing.JButton();
-        jButton57 = new javax.swing.JButton();
-        jButton60 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(680, 576));
         setResizable(false);
         getContentPane().setLayout(null);
 
+        jTabbedPane2.setToolTipText("");
         jTabbedPane2.setPreferredSize(new java.awt.Dimension(400, 400));
         jTabbedPane2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -1010,49 +1026,13 @@ public class mainForm extends javax.swing.JFrame {
 
         jPanel5.setLayout(new java.awt.GridLayout(3, 2));
 
-        jButton55.setBackground(new java.awt.Color(204, 255, 204));
-        jButton55.setText("PSEXEC START \"CMD\" ON REMOTE PC");
-        jButton55.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton55ActionPerformed(evt);
-            }
-        });
-        jPanel5.add(jButton55);
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
 
-        jButton54.setBackground(new java.awt.Color(204, 255, 204));
-        jButton54.setText("PSKILL KILL PROCESS REMOTE PC");
-        jButton54.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton54ActionPerformed(evt);
-            }
-        });
-        jPanel5.add(jButton54);
+        jPanel5.add(jScrollPane1);
 
-        jButton56.setText("Enable RDP cmd instruction");
-        jButton56.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton56ActionPerformed(evt);
-            }
-        });
-        jPanel5.add(jButton56);
-
-        jButton57.setText("Disable RDP cmd instruction");
-        jButton57.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton57ActionPerformed(evt);
-            }
-        });
-        jPanel5.add(jButton57);
-
-        jButton60.setText("Enable RemoteAdministration on Win7 and..");
-        jButton60.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton60ActionPerformed(evt);
-            }
-        });
-        jPanel5.add(jButton60);
-
-        jTabbedPane2.addTab("Hints", jPanel5);
+        jTabbedPane2.addTab("Log", jPanel5);
 
         getContentPane().add(jTabbedPane2);
         jTabbedPane2.setBounds(10, 0, 640, 550);
@@ -1063,49 +1043,6 @@ public class mainForm extends javax.swing.JFrame {
     private void jTabbedPane2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane2MouseDragged
         System.out.println("" + this.getSize());
     }//GEN-LAST:event_jTabbedPane2MouseDragged
-
-    private void jButton60ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton60ActionPerformed
-        HelpM.generate_enable_remote_admin_str();
-    }//GEN-LAST:event_jButton60ActionPerformed
-
-    private void jButton57ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton57ActionPerformed
-        HelpM.generate_disable_rdp_str();
-    }//GEN-LAST:event_jButton57ActionPerformed
-
-    private void jButton56ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton56ActionPerformed
-        HelpM.generate_enable_rdp_str();
-    }//GEN-LAST:event_jButton56ActionPerformed
-
-    private void jButton54ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton54ActionPerformed
-        //
-        String host = JOptionPane.showInputDialog("Type host");
-        String user = JOptionPane.showInputDialog("Type user");
-        String pass = JOptionPane.showInputDialog("Type pass");
-        String processNameOrPid = JOptionPane.showInputDialog("Type processName or PID (LowerUpperCase sensitive)");
-        //
-        HelpM.generate_pskill_str_remote(host, user, pass, processNameOrPid);
-        //
-        try {
-            HelpM.run_cmd();
-        } catch (IOException ex) {
-            Logger.getLogger(mainForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButton54ActionPerformed
-
-    private void jButton55ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton55ActionPerformed
-        //
-        String host = JOptionPane.showInputDialog("Type host");
-        String user = JOptionPane.showInputDialog("Type user");
-        String pass = JOptionPane.showInputDialog("Type pass");
-        //
-        HelpM.generate_psexec_str_for_launching_cmd_remotely(host, user, pass);
-        //
-        try {
-            HelpM.run_cmd();
-        } catch (IOException ex) {
-            Logger.getLogger(mainForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButton55ActionPerformed
 
     private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
         SA.run_application_2("lib/capture.exe"); // OBS! Must be run with "SA.run_application_2" otherwise not working
@@ -1409,7 +1346,7 @@ public class mainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton37ActionPerformed
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
-        
+
         SA.run_with_cmd("%windir%\\syswow64\\odbcad32.exe", "");
     }//GEN-LAST:event_jButton18ActionPerformed
 
@@ -1576,13 +1513,8 @@ public class mainForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton51;
     private javax.swing.JButton jButton52;
     private javax.swing.JButton jButton53;
-    private javax.swing.JButton jButton54;
-    private javax.swing.JButton jButton55;
-    private javax.swing.JButton jButton56;
-    private javax.swing.JButton jButton57;
     private javax.swing.JButton jButton59;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton60;
     private javax.swing.JButton jButton66;
     private javax.swing.JButton jButton67;
     private javax.swing.JButton jButton68;
@@ -1599,9 +1531,11 @@ public class mainForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JTextArea jTextArea1;
     public static javax.swing.JTextField jTextField1RD;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton2;
