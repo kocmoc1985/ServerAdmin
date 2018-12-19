@@ -347,7 +347,10 @@ public class HelpM {
         runWithBuilder(arr);
     }
     
-    
+    public static boolean file_exists(String path) {
+        File f = new File(path);
+        return f.exists();
+    }
 
     //==========================================================================
     /**
