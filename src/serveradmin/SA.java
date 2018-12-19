@@ -103,11 +103,18 @@ public class SA {
 
     public static boolean pingPort() {
         try {
-            InetAddress adress = InetAddress.getByName(JOptionPane.showInputDialog("Type ip"));
-            Socket socket = new Socket(adress, Integer.parseInt(JOptionPane.showInputDialog("Type port")));
-            Thread x = new Thread(new RecieveMessage(socket));
-            x.start();
-            JOptionPane.showMessageDialog(null, "Port open", "", JOptionPane.INFORMATION_MESSAGE);
+            //
+            String host = HelpM.getLastEntered("lib/_pingportip.io", "Specify ip");
+            String port = HelpM.getLastEntered("lib/_pingport.io", "Specify port");
+            //
+            if (host.isEmpty() == false && port.isEmpty() == false) {
+                InetAddress adress = InetAddress.getByName(host);
+                Socket socket = new Socket(adress, Integer.parseInt(port));
+                Thread x = new Thread(new RecieveMessage(socket));
+                x.start();
+                JOptionPane.showMessageDialog(null, "Port open", "", JOptionPane.INFORMATION_MESSAGE);
+            }
+            //
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "Port busy/closed", "", JOptionPane.INFORMATION_MESSAGE);
             Logger.getLogger(SA.class.getName()).log(Level.SEVERE, null, ex);
@@ -145,7 +152,7 @@ public class SA {
         Process proc = runtime.exec("shutdown -r -t 0");
         System.exit(0);
     }
-    
+
     public static void shut_down_immediately() throws IOException {
         //
         if (confirm() == false) {

@@ -320,7 +320,6 @@ public class mainForm extends javax.swing.JFrame implements ShowMessage {
         setResizable(false);
         getContentPane().setLayout(null);
 
-        jTabbedPane2.setToolTipText("");
         jTabbedPane2.setPreferredSize(new java.awt.Dimension(400, 400));
         jTabbedPane2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -1125,7 +1124,13 @@ public class mainForm extends javax.swing.JFrame implements ShowMessage {
         Runnable r = new Runnable() {
             @Override
             public void run() {
-                HelpM.run_program_with_catching_output(textArea1, "tracert", "", JOptionPane.showInputDialog("Type ip"), "", "");
+                //
+                String host = HelpM.getLastEntered("lib/_tracert.io", "Specify ip");
+                //
+                if (host.isEmpty() == false) {
+                    HelpM.run_program_with_catching_output(textArea1, "tracert", "", host, "", "");
+                }
+                //
             }
         };
         //
@@ -1162,7 +1167,9 @@ public class mainForm extends javax.swing.JFrame implements ShowMessage {
         Runnable r = new Runnable() {
             @Override
             public void run() {
+                //
                 SA.pingPort();
+                //
             }
         };
         //
@@ -1178,7 +1185,13 @@ public class mainForm extends javax.swing.JFrame implements ShowMessage {
         Runnable r = new Runnable() {
             @Override
             public void run() {
-                HelpM.run_program_with_catching_output(textArea1, "ping", "", JOptionPane.showInputDialog("Type ip"), "", "");
+                //
+                String host = HelpM.getLastEntered("lib/_ping.io", "Specify ip");
+                //
+                if (host.isEmpty() == false) {
+                    HelpM.run_program_with_catching_output(textArea1, "ping", "", host, "", "");
+                }
+                //
             }
         };
         //
