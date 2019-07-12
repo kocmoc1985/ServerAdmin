@@ -1536,9 +1536,11 @@ public class mainForm extends javax.swing.JFrame implements ShowMessage {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-
+        //
+//        HelpMy.err_output_to_file();
+        //
         HelpM.nimbusLookAndFeel();
-
+        //
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
