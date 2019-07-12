@@ -30,9 +30,12 @@ import java.util.Calendar;
 import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import myDialogs.TextFieldCheck_Sql;
+import myDialogs.myDialogs;
 
 /**
  *
@@ -504,4 +507,5 @@ public class HelpM {
             java.util.logging.Logger.getLogger(HelpM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
     }
+  
 }

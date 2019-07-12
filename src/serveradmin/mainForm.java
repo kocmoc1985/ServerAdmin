@@ -33,6 +33,8 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import myDialogs.TextFieldCheck_simple;
+import static myDialogs.myDialogs.chooseFromJTextFieldWithCheck;
 import other.ShowMessage;
 import statics.HelpMy;
 
@@ -270,6 +272,9 @@ public class mainForm extends javax.swing.JFrame implements ShowMessage {
         jButton3 = new javax.swing.JButton();
         jToggleButton4 = new javax.swing.JToggleButton();
         jLabel1 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
+        jButton20 = new javax.swing.JButton();
+        jButton27 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jButton2sessions = new javax.swing.JButton();
         textArea1 = new java.awt.TextArea();
@@ -578,7 +583,7 @@ public class mainForm extends javax.swing.JFrame implements ShowMessage {
             }
         });
         jPanel6.add(jButton59);
-        jButton59.setBounds(110, 220, 170, 40);
+        jButton59.setBounds(240, 270, 170, 40);
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jButton3.setText("User Credentials");
@@ -602,6 +607,33 @@ public class mainForm extends javax.swing.JFrame implements ShowMessage {
         jLabel1.setForeground(new java.awt.Color(153, 153, 153));
         jPanel6.add(jLabel1);
         jLabel1.setBounds(20, 496, 600, 20);
+
+        jButton4.setText("CHANGE RDP PORT");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel6.add(jButton4);
+        jButton4.setBounds(280, 220, 150, 40);
+
+        jButton20.setText("RDP PORT");
+        jButton20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton20ActionPerformed(evt);
+            }
+        });
+        jPanel6.add(jButton20);
+        jButton20.setBounds(440, 220, 110, 40);
+
+        jButton27.setText("ENABLE DISABLE RDP");
+        jButton27.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton27ActionPerformed(evt);
+            }
+        });
+        jPanel6.add(jButton27);
+        jButton27.setBounds(110, 220, 160, 40);
 
         jTabbedPane2.addTab("Windows", jPanel6);
 
@@ -1440,6 +1472,27 @@ public class mainForm extends javax.swing.JFrame implements ShowMessage {
         }
     }//GEN-LAST:event_jButton52ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        //
+        TextFieldCheck_simple tfc = new TextFieldCheck_simple("\\d{4}", 10);
+        boolean yesNo = chooseFromJTextFieldWithCheck(tfc, "Type port");
+        String rst = tfc.getText();
+        //
+        if(yesNo == false || rst == null || rst.isEmpty()){
+            return;
+        }
+        //
+        WinRegistry.change_rdp_port(Integer.parseInt(rst));
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
+        jButton20.setText(WinRegistry.get_rdp_port());
+    }//GEN-LAST:event_jButton20ActionPerformed
+
+    private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
+        WinRegistry.enable_disable_rdp();
+    }//GEN-LAST:event_jButton27ActionPerformed
+
     private String chooseNetworkInterFace() {
         ArrayList<String> interface_list = HelpM.getCurrentEnvironmentNetworkIp();
         String menu = "Choose Network Interface:";
@@ -1491,12 +1544,14 @@ public class mainForm extends javax.swing.JFrame implements ShowMessage {
     private javax.swing.JButton jButton19;
     public static javax.swing.JButton jButton1gpedit;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton22;
     private javax.swing.JButton jButton23;
     private javax.swing.JButton jButton24;
     private javax.swing.JButton jButton25;
     private javax.swing.JButton jButton26;
+    private javax.swing.JButton jButton27;
     private javax.swing.JButton jButton28;
     private javax.swing.JButton jButton29;
     public static javax.swing.JButton jButton2sessions;
@@ -1511,6 +1566,7 @@ public class mainForm extends javax.swing.JFrame implements ShowMessage {
     private javax.swing.JButton jButton37;
     private javax.swing.JButton jButton38;
     private javax.swing.JButton jButton39;
+    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton40;
     private javax.swing.JButton jButton41;
     private javax.swing.JButton jButton42;
