@@ -12,7 +12,9 @@ import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
+import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -100,6 +102,11 @@ public class SA {
 //        mainForm.textArea1.append("" + processName + " running = " + "false" + "\n");
         return false;
     }
+    
+    public static void main(String[] args) {
+        pingPort();
+    }
+    
 
     public static boolean pingPort() {
         try {
@@ -110,14 +117,15 @@ public class SA {
             if (host.isEmpty() == false && port.isEmpty() == false) {
                 InetAddress adress = InetAddress.getByName(host);
                 Socket socket = new Socket(adress, Integer.parseInt(port));
-                Thread x = new Thread(new RecieveMessage(socket));
+                socket.setTcpNoDelay(true);
+                Thread x = new Thread(new RecieveMessage(socket)); // This one is if we await some answe on connection to port
                 x.start();
                 JOptionPane.showMessageDialog(null, "Port open", "", JOptionPane.INFORMATION_MESSAGE);
             }
             //
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "Port busy/closed", "", JOptionPane.INFORMATION_MESSAGE);
-            Logger.getLogger(SA.class.getName()).log(Level.SEVERE, null, ex);
+//            Logger.getLogger(SA.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
         return true;

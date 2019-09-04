@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  */
 public class RecieveMessage implements Runnable {
 
-    private Socket socket;
+    private final Socket socket;
     private boolean run = true;
 
     public RecieveMessage(Socket socket) {
