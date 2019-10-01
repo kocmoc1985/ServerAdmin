@@ -281,6 +281,7 @@ public class mainForm extends javax.swing.JFrame implements ShowMessage {
         jButton4 = new javax.swing.JButton();
         jButton20 = new javax.swing.JButton();
         jButton27 = new javax.swing.JButton();
+        jButton54 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jButton2sessions = new javax.swing.JButton();
         textArea1 = new java.awt.TextArea();
@@ -624,14 +625,15 @@ public class mainForm extends javax.swing.JFrame implements ShowMessage {
         jPanel6.add(jButton4);
         jButton4.setBounds(280, 220, 150, 40);
 
-        jButton20.setText("RDP PORT");
+        jButton20.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jButton20.setText("START UP");
         jButton20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton20ActionPerformed(evt);
             }
         });
         jPanel6.add(jButton20);
-        jButton20.setBounds(440, 220, 110, 40);
+        jButton20.setBounds(450, 270, 110, 40);
 
         jButton27.setText("ENABLE DISABLE RDP");
         jButton27.addActionListener(new java.awt.event.ActionListener() {
@@ -641,6 +643,15 @@ public class mainForm extends javax.swing.JFrame implements ShowMessage {
         });
         jPanel6.add(jButton27);
         jButton27.setBounds(110, 220, 160, 40);
+
+        jButton54.setText("RDP PORT");
+        jButton54.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton54ActionPerformed(evt);
+            }
+        });
+        jPanel6.add(jButton54);
+        jButton54.setBounds(440, 220, 110, 40);
 
         jTabbedPane2.addTab("Windows", jPanel6);
 
@@ -1504,12 +1515,19 @@ public class mainForm extends javax.swing.JFrame implements ShowMessage {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
-        jButton20.setText(WinRegistry.get_rdp_port());
+        String username = JOptionPane.showInputDialog("Type username");
+        String path = "C:/Users/"+username+"/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup";
+        HelpM.showCmdInstructionInTextArea(path);
+        SA.open_dir(path);
     }//GEN-LAST:event_jButton20ActionPerformed
 
     private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
         WinRegistry.enable_disable_rdp();
     }//GEN-LAST:event_jButton27ActionPerformed
+
+    private void jButton54ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton54ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton54ActionPerformed
 
     private String chooseNetworkInterFace() {
         ArrayList<String> interface_list = HelpM.getCurrentEnvironmentNetworkIp();
@@ -1602,6 +1620,7 @@ public class mainForm extends javax.swing.JFrame implements ShowMessage {
     private javax.swing.JButton jButton51;
     private javax.swing.JButton jButton52;
     private javax.swing.JButton jButton53;
+    private javax.swing.JButton jButton54;
     private javax.swing.JButton jButton59;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton66;
