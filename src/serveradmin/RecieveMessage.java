@@ -35,6 +35,7 @@ public class RecieveMessage implements Runnable {
             }
         } catch (IOException e) {
             Logger.getLogger(RecieveMessage.class.getName()).log(Level.SEVERE, null, e);
+            run = false;
         }
     }
 
@@ -43,8 +44,10 @@ public class RecieveMessage implements Runnable {
         while (run) {
             try {
                 recieve();
+                System.out.println("recieve(): " + run);
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(RecieveMessage.class.getName()).log(Level.SEVERE, null, ex);
+                run = false;
             }
         }
     }
