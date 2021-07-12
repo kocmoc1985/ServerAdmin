@@ -4,8 +4,8 @@
  */
 package serveradmin;
 
-import com.jezhumble.javasysmon.JavaSysMon;
-import com.jezhumble.javasysmon.ProcessInfo;
+//import com.jezhumble.javasysmon.JavaSysMon;
+//import com.jezhumble.javasysmon.ProcessInfo;
 import java.awt.AWTException;
 import java.awt.Desktop;
 import java.awt.Robot;
@@ -88,20 +88,20 @@ public class SA {
      * @processName str the process name to search for "Browser.exe"
      * @return
      */
-    public static boolean processRunning(String processName) {
-        JavaSysMon monitor = new JavaSysMon();
-        ProcessInfo[] pinfo = monitor.processTable();
-
-        for (int i = 0; i < pinfo.length; i++) {
-            String pname = pinfo[i].getName();
-            if (pname.equals(processName)) {
-//                mainForm.textArea1.append("" + processName + " running = " + "true" + "\n");
-                return true;
-            }
-        }
-//        mainForm.textArea1.append("" + processName + " running = " + "false" + "\n");
-        return false;
-    }
+//    public static boolean processRunning(String processName) {
+//        JavaSysMon monitor = new JavaSysMon();
+//        ProcessInfo[] pinfo = monitor.processTable();
+//
+//        for (int i = 0; i < pinfo.length; i++) {
+//            String pname = pinfo[i].getName();
+//            if (pname.equals(processName)) {
+////                mainForm.textArea1.append("" + processName + " running = " + "true" + "\n");
+//                return true;
+//            }
+//        }
+////        mainForm.textArea1.append("" + processName + " running = " + "false" + "\n");
+//        return false;
+//    }
 
     public static void main(String[] args) {
         pingPort();

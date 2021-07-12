@@ -4,8 +4,8 @@
  */
 package serveradmin;
 
-import com.jezhumble.javasysmon.JavaSysMon;
-import com.jezhumble.javasysmon.ProcessInfo;
+//import com.jezhumble.javasysmon.JavaSysMon;
+//import com.jezhumble.javasysmon.ProcessInfo;
 import java.awt.Desktop;
 import java.awt.TextArea;
 import java.io.BufferedReader;
@@ -267,29 +267,29 @@ public class HelpM {
         return builder.start();
     }
 
-    public static void terminate_process_no_external_apps_in_use(String processName) {
-        JavaSysMon monitor = new JavaSysMon();
-        ProcessInfo[] pinfo = monitor.processTable();
-
-        for (int i = 0; i < pinfo.length; i++) {
-            String pname = pinfo[i].getName();
-            int pid = pinfo[i].getPid();
-            if (pname.toLowerCase().equals(processName.toLowerCase())) {
-                monitor.killProcess(pid);
-            }
-        }
+    private static void terminate_process_no_external_apps_in_use(String processName) {
+//        JavaSysMon monitor = new JavaSysMon();
+//        ProcessInfo[] pinfo = monitor.processTable();
+//
+//        for (int i = 0; i < pinfo.length; i++) {
+//            String pname = pinfo[i].getName();
+//            int pid = pinfo[i].getPid();
+//            if (pname.toLowerCase().equals(processName.toLowerCase())) {
+//                monitor.killProcess(pid);
+//            }
+//        }
     }
 
-    public static boolean processRunning(String processName) {
-        JavaSysMon monitor = new JavaSysMon();
-        ProcessInfo[] pinfo = monitor.processTable();
-        for (int i = 0; i < pinfo.length; i++) {
-            String pname = pinfo[i].getName();
-            if (pname.toLowerCase().equals(processName.toLowerCase())) {
-                return true;
-            }
-
-        }
+    private static boolean processRunning(String processName) {
+//        JavaSysMon monitor = new JavaSysMon();
+//        ProcessInfo[] pinfo = monitor.processTable();
+//        for (int i = 0; i < pinfo.length; i++) {
+//            String pname = pinfo[i].getName();
+//            if (pname.toLowerCase().equals(processName.toLowerCase())) {
+//                return true;
+//            }
+//
+//        }
         return false;
     }
 
