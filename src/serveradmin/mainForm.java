@@ -37,6 +37,7 @@ import myDialogs.TextFieldCheck_simple;
 import static myDialogs.myDialogs.chooseFromJTextFieldWithCheck;
 import other.ShowMessage;
 import statics.HelpMy;
+import supplementary.ICON;
 
 /**
  *
@@ -45,7 +46,8 @@ import statics.HelpMy;
 public class mainForm extends javax.swing.JFrame implements ShowMessage {
 
     private static boolean console = false;
-    private Image image = new ImageIcon("lib/1.png").getImage();
+//    private Image image = new ImageIcon("lib/1.png").getImage();
+     private Image image = ICON.getPrimIcon();
     ShutDown SHUT_DOWN = null;
     //
     private PopupMenu popup;
@@ -72,6 +74,14 @@ public class mainForm extends javax.swing.JFrame implements ShowMessage {
         initComponents();
         initOther();
         startUdpServer();
+        createFolderLibIfNotExist();
+       
+    }
+
+    private void createFolderLibIfNotExist() {
+        if (HelpM.file_exists("lib") == false) {
+            HelpM.create_dir_if_missing("lib");
+        }
     }
 
     private void startUdpServer() {
@@ -92,8 +102,8 @@ public class mainForm extends javax.swing.JFrame implements ShowMessage {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         toTray();
     }
-    
-    private void showWinVersionAndBuild(){
+
+    private void showWinVersionAndBuild() {
         jLabelOsVersion.setText(HelpMy.getWinVersionAndBuild() + "  " + HelpMy.getOperatingSystem());
     }
 
@@ -230,7 +240,6 @@ public class mainForm extends javax.swing.JFrame implements ShowMessage {
     private void showRefreshIpsInMainWindow(String msg) {
         jLabel1.setText(msg.replaceAll("(\r\n|\n)", " / ").replaceAll("ServerAdmin:", "").replaceFirst("/", ""));
     }
-    
 
     private void makeVisible() {
         this.setVisible(true);
@@ -1473,7 +1482,7 @@ public class mainForm extends javax.swing.JFrame implements ShowMessage {
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
         String username = JOptionPane.showInputDialog("Type username");
-        String path = "C:/Users/"+username+"/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup";
+        String path = "C:/Users/" + username + "/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup";
         HelpM.showCmdInstructionInTextArea(path);
         SA.open_dir(path);
     }//GEN-LAST:event_jButton20ActionPerformed
