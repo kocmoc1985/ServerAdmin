@@ -70,7 +70,7 @@ public class HelpM {
         return formatter.format(calendar.getTime());
     }
 
-    public static String getLastEntered(String filePath,String msg) {
+    public static String getLastEntered(String filePath, String msg) {
         //
         ArrayList<String> list;
         //
@@ -80,8 +80,8 @@ public class HelpM {
             //
             list = HelpM.read_Txt_To_ArrayList(filePath);
             //
-            if(list.isEmpty() == false){
-               previous = list.get(0);
+            if (list.isEmpty() == false) {
+                previous = list.get(0);
             }
             //
         }
@@ -98,7 +98,7 @@ public class HelpM {
             //
         }
         //
-        if(actual == null || actual.isEmpty()){
+        if (actual == null || actual.isEmpty()) {
             return "";
         }
         //
@@ -507,5 +507,5 @@ public class HelpM {
             java.util.logging.Logger.getLogger(HelpM.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
     }
-  
+
 }
