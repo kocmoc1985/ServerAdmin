@@ -121,6 +121,9 @@ public class SA {
         jtxt.append("DATE A: " + date_a);
         jtxt.append("\r\nDATE B: " + date_b);
         jtxt.append("\r\nDIFFERENCE: " + days + " days");
+        jtxt.append("\r\nDIFFERENCE: " + days * 24 + " hours");
+        jtxt.append("\r\nDIFFERENCE: " + days * 1440 + " minutes");
+        jtxt.append("\r\nDIFFERENCE: " + days * 86400 + " seconds");
         //
     }
     
