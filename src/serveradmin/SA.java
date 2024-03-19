@@ -109,6 +109,19 @@ public class SA {
         pingPort();
     }
     
+     public static void millisToDate(TextArea jtxt){
+        //
+        jtxt.setText("");
+        //
+        String millis = HelpM.getLastEntered("lib/_ms_to_date.io", "Specify millis");
+        //
+        String date = MyCalcDiffBetweenTwoTimePoints.millisToDateConverter(millis);
+        
+        //
+        jtxt.append("MILLIS : " + millis + " = " + date);
+        //
+    }
+    
     public static void dateToMillis(TextArea jtxt){
         //
         jtxt.setText("");
