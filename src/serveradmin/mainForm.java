@@ -66,6 +66,7 @@ public class mainForm extends javax.swing.JFrame implements ShowMessage {
     private SystemTray tray;
     private TrayIcon trayIcon;
     //
+//    public static final String TAB_NAME_COMMONS = "Commons";
 
     /**
      * Creates new form mainForm
@@ -288,6 +289,7 @@ public class mainForm extends javax.swing.JFrame implements ShowMessage {
         jToggleButton4 = new javax.swing.JToggleButton();
         jLabel1 = new javax.swing.JLabel();
         jButton20 = new javax.swing.JButton();
+        jButton55 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jButton2sessions = new javax.swing.JButton();
         textArea1 = new java.awt.TextArea();
@@ -634,6 +636,15 @@ public class mainForm extends javax.swing.JFrame implements ShowMessage {
         });
         jPanel6.add(jButton20);
         jButton20.setBounds(290, 220, 110, 40);
+
+        jButton55.setText("DATE LAST RESTART");
+        jButton55.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton55ActionPerformed(evt);
+            }
+        });
+        jPanel6.add(jButton55);
+        jButton55.setBounds(410, 220, 170, 40);
 
         jTabbedPane2.addTab("Windows", jPanel6);
 
@@ -1125,6 +1136,10 @@ public class mainForm extends javax.swing.JFrame implements ShowMessage {
         System.out.println("" + this.getSize());
     }//GEN-LAST:event_jTabbedPane2MouseDragged
 
+    private void jButton53ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton53ActionPerformed
+        SA.run_application("lib/applicom.exe", "");
+    }//GEN-LAST:event_jButton53ActionPerformed
+
     private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
         SA.run_application_2("lib/capture.exe"); // OBS! Must be run with "SA.run_application_2" otherwise not working
     }//GEN-LAST:event_jButton25ActionPerformed
@@ -1154,9 +1169,104 @@ public class mainForm extends javax.swing.JFrame implements ShowMessage {
         SA.run_application("lib/autologon.exe", "");
     }//GEN-LAST:event_jButton7ActionPerformed
 
-    private void jButton53ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton53ActionPerformed
-        SA.run_application("lib/applicom.exe", "");
-    }//GEN-LAST:event_jButton53ActionPerformed
+    private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
+        //        SA.run_application("lib/filezilla/filezilla.exe", "");
+        HelpM.find_and_run_application("lib", "filezilla.exe");
+    }//GEN-LAST:event_jButton28ActionPerformed
+
+    private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
+        SA.run_application("lib/looklan/lookatlan.exe", "");
+    }//GEN-LAST:event_jButton21ActionPerformed
+
+    private void jButton54ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton54ActionPerformed
+        Runnable r = new Runnable() {
+            @Override
+            public void run() {
+                //
+                SA.millisToDate(textArea1);
+                //
+            }
+        };
+        //
+        Thread x = new Thread(r);
+        x.start();
+    }//GEN-LAST:event_jButton54ActionPerformed
+
+    private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
+        Runnable r = new Runnable() {
+            @Override
+            public void run() {
+                //
+                SA.dateToMillis(textArea1);
+                //
+            }
+        };
+        //
+        Thread x = new Thread(r);
+        x.start();
+    }//GEN-LAST:event_jButton27ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        //
+        Runnable r = new Runnable() {
+            @Override
+            public void run() {
+                //
+                SA.calcDiffBetween2Dates(textArea1);
+                //
+            }
+        };
+        //
+        Thread x = new Thread(r);
+        x.start();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton52ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton52ActionPerformed
+        try {
+            HelpM.run_application_with_associated_application(new File("lib/wol/main.properties"));
+        } catch (IOException ex) {
+            Logger.getLogger(mainForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton52ActionPerformed
+
+    private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
+        try {
+            HelpM.run_java_app_with_processbuiler("lib/wol", "WakeOnLan.jar", "");
+        } catch (IOException ex) {
+            Logger.getLogger(mainForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton24ActionPerformed
+
+    private void jButton51ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton51ActionPerformed
+        try {
+            HelpM.run_application_with_associated_application(new File("lib/redirections.txt"));
+        } catch (IOException ex) {
+            Logger.getLogger(mainForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton51ActionPerformed
+
+    private void jButton46ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton46ActionPerformed
+        try {
+            HelpM.run_java_app_with_processbuiler("lib", "MyPortRedirectionAuto.jar", "");
+        } catch (IOException ex) {
+            Logger.getLogger(mainForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton46ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        HelpM.run_program_with_catching_output(textArea1, "driverquery", "", "-v", "", "");
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        textArea1.setText("");
+        String ip_prefix = chooseNetworkInterFace();
+        String host = JOptionPane.showInputDialog("Type last digits", ip_prefix + ".");
+        try {
+            HelpM.getMacAddrHost(textArea1, host);
+        } catch (Exception ex) {
+            Logger.getLogger(mainForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
         try {
@@ -1232,11 +1342,6 @@ public class mainForm extends javax.swing.JFrame implements ShowMessage {
         SA.run_application("lib/tvnviewer.exe", "");
     }//GEN-LAST:event_jButton35ActionPerformed
 
-    private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
-        //        SA.run_application("lib/filezilla/filezilla.exe", "");
-        HelpM.find_and_run_application("lib", "filezilla.exe");
-    }//GEN-LAST:event_jButton28ActionPerformed
-
     private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
         SA.run_application("lib/ultravnc.exe", "");
     }//GEN-LAST:event_jButton23ActionPerformed
@@ -1258,10 +1363,6 @@ public class mainForm extends javax.swing.JFrame implements ShowMessage {
         Thread x = new Thread(r);
         x.start();
     }//GEN-LAST:event_jButton22ActionPerformed
-
-    private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
-        SA.run_application("lib/looklan/lookatlan.exe", "");
-    }//GEN-LAST:event_jButton21ActionPerformed
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
         Runnable r = new Runnable() {
@@ -1328,6 +1429,27 @@ public class mainForm extends javax.swing.JFrame implements ShowMessage {
         HelpM.run_program_with_catching_output(textArea1, "query.exe", "lib", "session", "", "");
     }//GEN-LAST:event_jButton2sessionsActionPerformed
 
+    private void jButton55ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton55ActionPerformed
+        HelpM.run_program_with_catching_output(textArea1, "net", "", "statistics", "workstation", "");
+        HelpM.openTabByName(jTabbedPane2, "Commons");
+        jTextArea1.setCaretPosition(0);
+    }//GEN-LAST:event_jButton55ActionPerformed
+
+    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
+        String username = JOptionPane.showInputDialog("Type username");
+        String path = "C:/Users/" + username + "/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup";
+        HelpM.showCmdInstructionInTextArea(path);
+        SA.open_dir(path);
+    }//GEN-LAST:event_jButton20ActionPerformed
+
+    private void jToggleButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        HelpM.showCmdInstructionInTextField("rundll32.exe keymgr.dll, KRShowKeyMgr");
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     private void jButton59ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton59ActionPerformed
         SA.run_with_cmd("osk", "");
     }//GEN-LAST:event_jButton59ActionPerformed
@@ -1386,9 +1508,9 @@ public class mainForm extends javax.swing.JFrame implements ShowMessage {
     }//GEN-LAST:event_jButton69ActionPerformed
 
     private void jButton66ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton66ActionPerformed
-//        String str = "%windir%\\syswow64\\odbcad32.exe";
+        //        String str = "%windir%\\syswow64\\odbcad32.exe";
         //        HelpM.showCmdInstructionInTextArea(str);
-//        SA.run_with_cmd("%windir%\\syswow64\\odbcad32.exe", "");
+        //        SA.run_with_cmd("%windir%\\syswow64\\odbcad32.exe", "");
         SA.run_with_cmd("odbcad32", "");
     }//GEN-LAST:event_jButton66ActionPerformed
 
@@ -1456,9 +1578,9 @@ public class mainForm extends javax.swing.JFrame implements ShowMessage {
     private void jButton1gpeditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1gpeditActionPerformed
         SA.run_with_cmd("gpedit.msc", "");
         textArea1.append("1. Disable Task Manager = User Configuration - Administrative Templates - System - Ctrl + "
-                + "Alt + Del Option - Remove Task Manager \n");
+            + "Alt + Del Option - Remove Task Manager \n");
         textArea1.append("2. Disable LogOff Btn = User Configuration - Administrative Templates - Start Menu and Taskbar "
-                + " - Remove LoggOff to the Start Menu \n");
+            + " - Remove LoggOff to the Start Menu \n");
         textArea1.append("3. Disable Autorun = Computer Configuration - Administrative Templates - System - Turn off Autoplay (property) \n");
         textArea1.append("4. Set disconnect for an idle session: User Configuration -> Administrative Templates -> Windows Components -> Terminal Services -> Sessions \n");
     }//GEN-LAST:event_jButton1gpeditActionPerformed
@@ -1466,111 +1588,6 @@ public class mainForm extends javax.swing.JFrame implements ShowMessage {
     private void jButton36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton36ActionPerformed
         SA.run_with_cmd("ncpa.cpl", "");
     }//GEN-LAST:event_jButton36ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        textArea1.setText("");
-        String ip_prefix = chooseNetworkInterFace();
-        String host = JOptionPane.showInputDialog("Type last digits", ip_prefix + ".");
-        try {
-            HelpM.getMacAddrHost(textArea1, host);
-        } catch (Exception ex) {
-            Logger.getLogger(mainForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        HelpM.showCmdInstructionInTextField("rundll32.exe keymgr.dll, KRShowKeyMgr");
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        HelpM.run_program_with_catching_output(textArea1, "driverquery", "", "-v", "", "");
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jToggleButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton4ActionPerformed
-
-    private void jButton46ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton46ActionPerformed
-        try {
-            HelpM.run_java_app_with_processbuiler("lib", "MyPortRedirectionAuto.jar", "");
-        } catch (IOException ex) {
-            Logger.getLogger(mainForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButton46ActionPerformed
-
-    private void jButton51ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton51ActionPerformed
-        try {
-            HelpM.run_application_with_associated_application(new File("lib/redirections.txt"));
-        } catch (IOException ex) {
-            Logger.getLogger(mainForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButton51ActionPerformed
-
-    private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
-        try {
-            HelpM.run_java_app_with_processbuiler("lib/wol", "WakeOnLan.jar", "");
-        } catch (IOException ex) {
-            Logger.getLogger(mainForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButton24ActionPerformed
-
-    private void jButton52ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton52ActionPerformed
-        try {
-            HelpM.run_application_with_associated_application(new File("lib/wol/main.properties"));
-        } catch (IOException ex) {
-            Logger.getLogger(mainForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButton52ActionPerformed
-
-    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
-        String username = JOptionPane.showInputDialog("Type username");
-        String path = "C:/Users/" + username + "/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup";
-        HelpM.showCmdInstructionInTextArea(path);
-        SA.open_dir(path);
-    }//GEN-LAST:event_jButton20ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        //
-        Runnable r = new Runnable() {
-            @Override
-            public void run() {
-                //
-                SA.calcDiffBetween2Dates(textArea1);
-                //
-            }
-        };
-        //
-        Thread x = new Thread(r);
-        x.start();
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
-         Runnable r = new Runnable() {
-            @Override
-            public void run() {
-                //
-                SA.dateToMillis(textArea1);
-                //
-            }
-        };
-        //
-        Thread x = new Thread(r);
-        x.start();
-    }//GEN-LAST:event_jButton27ActionPerformed
-
-    private void jButton54ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton54ActionPerformed
-          Runnable r = new Runnable() {
-            @Override
-            public void run() {
-                //
-                SA.millisToDate(textArea1);
-                //
-            }
-        };
-        //
-        Thread x = new Thread(r);
-        x.start();
-    }//GEN-LAST:event_jButton54ActionPerformed
 
     private String chooseNetworkInterFace() {
         ArrayList<String> interface_list = HelpM.getCurrentEnvironmentNetworkIp();
@@ -1623,7 +1640,7 @@ public class mainForm extends javax.swing.JFrame implements ShowMessage {
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
-    public static javax.swing.JButton jButton1gpedit;
+    private javax.swing.JButton jButton1gpedit;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
@@ -1635,7 +1652,7 @@ public class mainForm extends javax.swing.JFrame implements ShowMessage {
     private javax.swing.JButton jButton27;
     private javax.swing.JButton jButton28;
     private javax.swing.JButton jButton29;
-    public static javax.swing.JButton jButton2sessions;
+    private javax.swing.JButton jButton2sessions;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton30;
     private javax.swing.JButton jButton31;
@@ -1664,6 +1681,7 @@ public class mainForm extends javax.swing.JFrame implements ShowMessage {
     private javax.swing.JButton jButton52;
     private javax.swing.JButton jButton53;
     private javax.swing.JButton jButton54;
+    private javax.swing.JButton jButton55;
     private javax.swing.JButton jButton59;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton66;
@@ -1688,11 +1706,11 @@ public class mainForm extends javax.swing.JFrame implements ShowMessage {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTextArea jTextArea1;
-    public static javax.swing.JTextField jTextField1RD;
+    private javax.swing.JTextField jTextField1RD;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JToggleButton jToggleButton3;
     private javax.swing.JToggleButton jToggleButton4;
-    public static java.awt.TextArea textArea1;
+    private java.awt.TextArea textArea1;
     // End of variables declaration//GEN-END:variables
 }

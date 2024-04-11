@@ -32,6 +32,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import myDialogs.TextFieldCheck_Sql;
@@ -176,6 +177,17 @@ public class HelpM {
     public static void generate_map_network_drive_str(String host, String driveLetterToUse, String driveToMap, String user, String pass) {
         String str = "net use " + driveLetterToUse + ": \\\\" + host + "\\" + driveToMap + " /user:" + user + " " + pass;
         showCmdInstructionInTextField(str);
+    }
+    
+    public static void openTabByName(JTabbedPane jtp, String tabName) {
+        for (int i = 0; i < jtp.getTabCount(); i++) {
+            String title = jtp.getTitleAt(i);
+            //
+            if (title.equals(tabName)) {
+                jtp.setSelectedIndex(i);
+            }
+            //
+        }
     }
 
     public static void showCmdInstructionInTextField(String instr) {
