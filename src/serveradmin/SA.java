@@ -130,7 +130,8 @@ public class SA {
         //
         long date_ms = MyCalcDiffBetweenTwoTimePoints.dateToMillisConverter(date);
         //
-        jtxt.append("DATE : " + date + " = " + date_ms);
+        jtxt.append("DATE (DONT USE THIS FOR BOUT) : " + date + " = " + date_ms);
+        jtxt.append("\nDATE / 200000 USE THIS FOR BOUT:  = " + date_ms / 200000);
         //
     }
     
