@@ -29,7 +29,7 @@ import supplementary.MyCalcDiffBetweenTwoTimePoints;
  * @author Administrator
  */
 public class SA {
-    
+
     public static void run_application(String path_and_name, String argument) {
         String[] commands = {path_and_name, argument};
         ProcessBuilder builder = new ProcessBuilder(commands);
@@ -40,7 +40,7 @@ public class SA {
             Logger.getLogger(SA.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public static void run_application(String[] commands) {
         ProcessBuilder builder = new ProcessBuilder(commands);
         builder.directory(new File("lib"));
@@ -50,7 +50,7 @@ public class SA {
             Logger.getLogger(SA.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public static void run_application_2(String path) {
         try {
             Thread.sleep(100);
@@ -63,7 +63,7 @@ public class SA {
             System.out.println("" + ex);
         }
     }
-    
+
     public static void openMyComputer() throws AWTException {
         Robot robot = new Robot();
         //
@@ -74,7 +74,7 @@ public class SA {
         robot.keyRelease(KeyEvent.VK_E);
         //
     }
-    
+
     public static void run_with_cmd(String cmd_application, String arg) {
         String[] commands = {"cmd", "/c", "start", "\"" + cmd_application + "\"", cmd_application, arg};
         ProcessBuilder builder = new ProcessBuilder(commands);
@@ -108,21 +108,21 @@ public class SA {
     public static void main(String[] args) {
         pingPort();
     }
-    
-     public static void millisToDate(TextArea jtxt){
+
+    public static void millisToDate(TextArea jtxt) {
         //
         jtxt.setText("");
         //
         String millis = HelpM.getLastEntered("lib/_ms_to_date.io", "Specify millis");
         //
         String date = MyCalcDiffBetweenTwoTimePoints.millisToDateConverter(millis);
-        
+
         //
         jtxt.append("MILLIS : " + millis + " = " + date);
         //
     }
-    
-    public static void dateToMillis(TextArea jtxt){
+
+    public static void dateToMillis(TextArea jtxt) {
         //
         jtxt.setText("");
         //
@@ -134,7 +134,7 @@ public class SA {
         jtxt.append("\nDATE / 200000 USE THIS FOR BOUT:  = " + date_ms / 200000);
         //
     }
-    
+
     public static void calcDiffBetween2Dates(TextArea jtxt) {
         //
         jtxt.setText("");
@@ -152,7 +152,22 @@ public class SA {
         jtxt.append("\r\nDIFFERENCE: " + days * 86400 + " seconds");
         //
     }
-    
+
+    public static void string_to_byte_array( TextArea jtxt) {
+        //
+        jtxt.setText("");
+        //
+        String date = HelpM.getLastEntered("lib/str_to_byte_arr.io", "Write the string");
+        //
+        byte[] bytes = date.getBytes();
+        String to_return = "new String(new byte[]{";
+        for (byte b : bytes) {
+            to_return += "" + b + ",";
+            System.out.println(b);
+        }
+        jtxt.append("\r\n" + to_return + "})");
+    }
+
     public static boolean pingPort() {
         //
         Socket socket = null;
@@ -189,7 +204,7 @@ public class SA {
         }
         return true;
     }
-    
+
     public static void open_dir(String path) {
         try {
             Desktop.getDesktop().open(new File(path));
@@ -197,18 +212,18 @@ public class SA {
             Logger.getLogger(SA.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public static void check_if_component_present(String path, JButton button) {
         if (get_if_file_exist(path) == false) {
             button.setText(button.getText() + " (missing)");
         }
     }
-    
+
     private static boolean get_if_file_exist(String path) {
         File f = new File(path);
         return f.exists();
     }
-    
+
     public static void restart() throws IOException {
         //
         if (confirm() == false) {
@@ -219,7 +234,7 @@ public class SA {
         Process proc = runtime.exec("shutdown -r -t 0");
         System.exit(0);
     }
-    
+
     public static void shut_down_immediately() throws IOException {
         //
         if (confirm() == false) {
@@ -230,7 +245,7 @@ public class SA {
         Process proc = runtime.exec("shutdown -s -t 0");
         System.exit(0);
     }
-    
+
     public static boolean confirm() {
         return JOptionPane.showConfirmDialog(null, "Confirm action?", "Confirm", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
     }
