@@ -24,6 +24,7 @@ import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -68,6 +69,42 @@ public class HelpM {
     public static String get_date_time() {
         DateFormat formatter = new SimpleDateFormat("yyyy_MM_dd HH_mm_ss");
         Calendar calendar = Calendar.getInstance();
+        return formatter.format(calendar.getTime());
+    }
+
+    public static String get_date_time_plus_some_time_in_days(String date, long days) {
+        String date_format = "yyyy-MM-dd";
+        long time_to_plus = 86400000 * days;
+        long ms = dateToMillisConverter3(date, date_format);
+        long new_date_in_ms = ms + time_to_plus;
+        String new_date = millisToDateConverter("" + new_date_in_ms, date_format);
+        return new_date;
+    }
+
+    public static String get_date_time_minus_some_time_in_days(String date, long days) {
+        String date_format = "yyyy-MM-dd";
+        long time_to_minus = 86400000 * Math.abs(days);
+        long ms = dateToMillisConverter3(date, date_format);
+        long new_date_in_ms = ms - time_to_minus;
+        String new_date = millisToDateConverter("" + new_date_in_ms, date_format);
+        return new_date;
+    }
+
+    public static long dateToMillisConverter3(String date, String date_format) {
+        DateFormat formatter = new SimpleDateFormat(date_format);
+        try {
+            return formatter.parse(date).getTime();
+        } catch (ParseException ex) {
+            Logger.getLogger(HelpM.class.getName()).log(Level.SEVERE, null, ex);
+            return -1;
+        }
+    }
+
+    public static String millisToDateConverter(String millis, String format) {
+        DateFormat formatter = new SimpleDateFormat(format); // this works to!
+        long now = Long.parseLong(millis);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(now);
         return formatter.format(calendar.getTime());
     }
 
@@ -178,7 +215,7 @@ public class HelpM {
         String str = "net use " + driveLetterToUse + ": \\\\" + host + "\\" + driveToMap + " /user:" + user + " " + pass;
         showCmdInstructionInTextField(str);
     }
-    
+
     public static void openTabByName(JTabbedPane jtp, String tabName) {
         for (int i = 0; i < jtp.getTabCount(); i++) {
             String title = jtp.getTitleAt(i);

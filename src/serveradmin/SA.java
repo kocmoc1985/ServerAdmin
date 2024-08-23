@@ -153,7 +153,37 @@ public class SA {
         //
     }
 
-    public static void string_to_byte_array( TextArea jtxt) {
+    public static void date_plus(TextArea jtxt) {
+        //
+        jtxt.setText("");
+        //
+        String date_a = HelpM.getLastEntered("lib/_date_plus_a.io", "Specify date YYYY-MM-DD") + " 00:00:00";
+        String days_to_be_added = HelpM.getLastEntered("lib/_date_plus_b.io", "Specify ammount of days to be added");
+        //
+        String date_plus = HelpM.get_date_time_plus_some_time_in_days(date_a, Long.parseLong(days_to_be_added));
+        //
+        jtxt.append("DATE: " + date_a);
+        jtxt.append("\r\nDAYS ADDED: " + days_to_be_added);
+        jtxt.append("\r\nNEW DATE: " + date_plus);
+        //
+    }
+
+    public static void date_minus(TextArea jtxt) {
+        //
+        jtxt.setText("");
+        //
+        String date_a = HelpM.getLastEntered("lib/_date_minus_a.io", "Specify date YYYY-MM-DD") + " 00:00:00";
+        String days_to_be_minus = HelpM.getLastEntered("lib/_date_minus_b.io", "Specify ammount of days to be minused");
+        //
+        String date_minus = HelpM.get_date_time_minus_some_time_in_days(date_a, Long.parseLong(days_to_be_minus));
+        //
+        jtxt.append("DATE: " + date_a);
+        jtxt.append("\r\nDAYS MINUS: " + days_to_be_minus);
+        jtxt.append("\r\nNEW DATE: " + date_minus);
+        //
+    }
+
+    public static void string_to_byte_array(TextArea jtxt) {
         //
         jtxt.setText("");
         //
