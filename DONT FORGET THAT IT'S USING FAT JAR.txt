@@ -1,0 +1,3 @@
+"Fat jar" is implemented to project so it shall be used
+
+Right click on "build.xml" - Run target - Other targets - package for store

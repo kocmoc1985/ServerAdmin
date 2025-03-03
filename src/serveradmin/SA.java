@@ -121,6 +121,22 @@ public class SA {
         jtxt.append("MILLIS : " + millis + " = " + date);
         //
     }
+    
+    public static void devidedMillisToDate(TextArea jtxt) {
+        //
+        jtxt.setText("");
+        //
+        String millis = HelpM.getLastEntered("lib/_ms_to_date.io", "Specify millis");
+        //
+        long m = Long.parseLong(millis);
+        long mm = m * 200000;
+        //
+        String date = MyCalcDiffBetweenTwoTimePoints.millisToDateConverter("" + mm);
+
+        //
+        jtxt.append("MILLIS :" + m +  "* 200000 = " + mm + " ms      =     " + date);
+        //
+    }
 
     public static void dateToMillis(TextArea jtxt) {
         //
