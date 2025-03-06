@@ -121,7 +121,7 @@ public class SA {
         jtxt.append("MILLIS : " + millis + " = " + date);
         //
     }
-    
+
     public static void devidedMillisToDate(TextArea jtxt) {
         //
         jtxt.setText("");
@@ -134,7 +134,7 @@ public class SA {
         String date = MyCalcDiffBetweenTwoTimePoints.millisToDateConverter("" + mm);
 
         //
-        jtxt.append("MILLIS :" + m +  "* 200000 = " + mm + " ms      =     " + date);
+        jtxt.append("MILLIS :" + m + "* 200000 = " + mm + " ms      =     " + date);
         //
     }
 
@@ -148,6 +148,33 @@ public class SA {
         //
         jtxt.append("DATE (DONT USE THIS FOR BOUT) : " + date + " = " + date_ms);
         jtxt.append("\nDATE / 200000 USE THIS FOR BOUT:  = " + date_ms / 200000);
+        //
+    }
+
+    public static void dateToMillis_when_date_on_pc_is_back(TextArea jtxt) { // Toest' kogda chasin otstajut
+        //
+        jtxt.setText("");
+        //
+        String date_back = HelpM.getLastEntered("lib/_date_back.io", "Specify date BACK YYYY-MM-DD") + " 00:00:00";
+        //
+        String date_real = HelpM.getLastEntered("lib/_date_real.io", "Specify date REAL YYYY-MM-DD") + " 00:00:00";
+        //
+        String date_bout = HelpM.getLastEntered("lib/_date_bout_aa.io", "Specify date BOUT YYYY-MM-DD") + " 00:00:00";
+        //
+        int days_to_be_minus = MyCalcDiffBetweenTwoTimePoints.findDiffBetweenTwoDates(date_back, date_real, 3);
+        //
+        String date_bout_minus = HelpM.get_date_time_minus_some_time_in_days(date_bout, Long.parseLong("" + days_to_be_minus));
+        //
+        date_bout_minus += " 00:00:00";
+        //
+        long date_ms = MyCalcDiffBetweenTwoTimePoints.dateToMillisConverter(date_bout_minus);
+        //
+        jtxt.append("DATE BACK : " + date_back);
+        jtxt.append("\nDATE REAL : " + date_real);
+        jtxt.append("\nDATE BOUT REAL : " + date_real);
+        jtxt.append("\n");
+        jtxt.append("\nDATE BOUT BACK: " + date_bout_minus + " = " + date_ms);
+        jtxt.append("\nDATE / 200000 USE THIS FOR BOUT BACK:  = " + date_ms / 200000);
         //
     }
 
