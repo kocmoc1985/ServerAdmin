@@ -241,6 +241,21 @@ public class SA {
         jtxt.append("\r\n" + to_return + "})");
     }
 
+    public static void byte_array_to_string(TextArea jtxt) {
+        //
+        jtxt.setText("");
+        //
+        String str = HelpM.getLastEntered("lib/byte_arr_to_str.io", "Insert all including: new String(new byte[]{");
+        //
+        String str_to_run_in_netbeans = "";
+        str_to_run_in_netbeans += "System.out.println(\"\" + ";
+        str_to_run_in_netbeans += str;
+        str_to_run_in_netbeans += ");";
+        //
+        jtxt.append("Run the below code from NetBeans:");
+        jtxt.append("\r\n" + str_to_run_in_netbeans);
+    }
+
     public static boolean pingPort() {
         //
         Socket socket = null;
