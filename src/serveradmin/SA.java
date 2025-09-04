@@ -171,11 +171,21 @@ public class SA {
         //
         jtxt.append("DATE BACK : " + date_back);
         jtxt.append("\nDATE REAL : " + date_real);
-        jtxt.append("\nDATE BOUT REAL : " + date_real);
+        jtxt.append("\nDATE BOUT REAL : " + date_bout);
         jtxt.append("\n");
         jtxt.append("\nDATE BOUT BACK: " + date_bout_minus + " = " + date_ms);
         jtxt.append("\nDATE / 200000 USE THIS FOR BOUT BACK:  = " + date_ms / 200000);
         //
+        //
+        int days = MyCalcDiffBetweenTwoTimePoints.findDiffBetweenTwoDates(date_bout_minus, date_bout, 3);
+        //
+        jtxt.append("\n");
+        jtxt.append("\n");
+        jtxt.append("\r\nDIFF BETWEEN DATE_BOUT_BACK AND DATE_BOUT_REAL");
+        jtxt.append("\r\nDIFFERENCE: " + days + " days");
+        jtxt.append("\r\nDIFFERENCE: " + days * 24 + " hours");
+        jtxt.append("\r\nDIFFERENCE: " + days * 1440 + " minutes");
+        jtxt.append("\r\nDIFFERENCE: " + days * 86400 + " seconds");
     }
 
     public static void calcDiffBetween2Dates(TextArea jtxt) {
